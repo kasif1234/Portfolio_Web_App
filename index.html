@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Kasif — Computer Engineer &amp; AI/ML Researcher</title>
+  <meta name="description" content="Portfolio of Mohammad Kasif — computer engineer and AI/ML researcher at Qatar University. Research, projects, and news." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <div class="app">
+
+    <!-- ============================================
+         SIDEBAR NAV — becomes a horizontal tab bar on mobile (see style.css)
+         Edit labels/order here AND in the matching <section id="..."> below if you rename a section.
+    ============================================= -->
+    <nav class="explorer" aria-label="Section navigation">
+      <div class="explorer-head">
+        <span class="explorer-tag">~/portfolio</span>
+      </div>
+
+      <ul class="file-list">
+        <li><a href="#summary" class="file-link" data-target="summary"><span class="file-icon">●</span>summary.md</a></li>
+        <li><a href="#news" class="file-link" data-target="news"><span class="file-icon">●</span>news.log</a></li>
+        <li><a href="#research" class="file-link" data-target="research"><span class="file-icon">●</span>research.py</a></li>
+        <li><a href="#projects" class="file-link" data-target="projects"><span class="file-icon">●</span>projects.json</a></li>
+        <li><a href="#outside" class="file-link" data-target="outside"><span class="file-icon">●</span>outside.txt</a></li>
+        <li><a href="#youtube" class="file-link" data-target="youtube"><span class="file-icon">●</span>youtube.sh</a></li>
+      </ul>
+
+      <div class="explorer-foot">
+        <a href="mailto:mk2110389@qu.edu.qa" class="explorer-email">mk2110389@qu.edu.qa</a>
+      </div>
+    </nav>
+
+    <!-- ============================================
+         MAIN CONTENT
+    ============================================= -->
+    <main class="content">
+
+      <!-- 01 · SUMMARY ================================= -->
+      <section id="summary" class="panel panel-hero">
+        <p class="comment">// 01</p>
+
+        <div class="hero-top">
+          <div class="hero-intro">
+            <p class="prompt">
+              <span class="prompt-user">mkasif@qu</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> whoami
+            </p>
+            <h1 class="whoami-output" id="whoamiOutput"></h1>
+            <p class="role-line">Computer Engineer — AI/ML Developer &amp; Researcher, Qatar University</p>
+          </div>
+
+          <!--
+            Optional profile photo. Drop a file at assets/img/profile.jpg (square, ~300x300px+)
+            and it appears automatically. Nothing there yet -> falls back to the "MK" tile below.
+          -->
+          <div class="hero-avatar">
+            <img src="assets/img/profile.jpg" alt="Mohammad Kasif at Qatar University College of Engineering" loading="lazy"
+                 onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-placeholder" style="display:none;">MK</div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Mohammad Kasif is a computer engineering graduate from Qatar University, based in Doha, Qatar. His work sits at the intersection of machine learning, computer vision, LLM systems, materials informatics, and research engineering. He has worked across QCRI, QEERI, QSTP, HMC, and Qatar University research projects, building practical AI systems and research pipelines.</p>
+          <p>My work has several connected threads: LLM and NL2SQL evaluation, computer vision for medical and classroom settings, materials informatics for organic thermoelectric polymers, and deployment-oriented AI systems. I enjoy building systems that move from research ideas into working prototypes, experiments, demos, and papers.</p>
+          <p><strong>Vision.</strong> I believe strong AI engineers should understand both theory and implementation. My goal is to build systems that are not only accurate, but explainable, useful, and grounded in real-world constraints. I am especially interested in deep theoretical computer science, machine learning foundations, and research problems where software engineering meets scientific discovery.</p>
+        </div>
+
+        <div class="directions">
+          <p class="block-label">research directions</p>
+          <ul class="direction-list">
+            <li>LLMs, NL2SQL, and evaluation systems</li>
+            <li>Computer vision and deep learning for real-world settings</li>
+            <li>Materials informatics and physics-informed machine learning</li>
+            <li>Research engineering, MLOps, and deployable AI systems</li>
+          </ul>
+        </div>
+
+        <div class="contact-row" id="contactRow">
+          <!-- populated by script.js from DATA.LINKS -->
+        </div>
+      </section>
+
+      <!-- 02 · NEWS ================================= -->
+      <section id="news" class="panel">
+        <p class="comment">// 02</p>
+        <h2>News</h2>
+        <p class="panel-sub">recent updates</p>
+        <div class="news-list" id="newsList"></div>
+      </section>
+
+      <!-- 03 · RESEARCH ================================= -->
+      <section id="research" class="panel">
+        <p class="comment">// 03</p>
+        <h2>Research</h2>
+        <p class="panel-sub">research experience</p>
+        <div class="research-list" id="researchList"></div>
+      </section>
+
+      <!-- 04 · PROJECTS ================================= -->
+      <section id="projects" class="panel">
+        <p class="comment">// 04</p>
+        <h2>Projects</h2>
+        <p class="panel-sub">hardware · systems · demos</p>
+        <div class="project-list" id="projectList"></div>
+      </section>
+
+      <!-- 05 · OUTSIDE ================================= -->
+      <section id="outside" class="panel">
+        <p class="comment">// 05</p>
+        <h2>Outside research</h2>
+        <p class="panel-sub">cricket, sports, teaching, theory</p>
+
+        <div class="prose">
+          <p>Outside research, I love cricket and sports. I played U19 cricket and also represented Qatar University, which taught me discipline, patience, teamwork, and how to perform under pressure. I also enjoy educating people through YouTube, where I share my experiences and explain technical ideas in a simple way.</p>
+          <p>I am deeply interested in theoretical computer science, especially the foundations behind algorithms, optimization, machine learning, and intelligent systems. I like understanding ideas from first principles, then turning them into real projects.</p>
+        </div>
+
+        <div class="media-row">
+          <!--
+            Drop real photos at assets/img/qu-cricket.jpg and assets/img/speaking.jpg
+            (roughly 4:3, e.g. 800x600px+) and they replace these placeholders automatically —
+            no HTML editing needed. Nothing there yet -> shows the placeholder tile below.
+          -->
+          <figure class="media-tile">
+            <div class="media-photo">
+              <img src="assets/img/qu-cricket.jpg" alt="Qatar University cricket team, Student Life Awards 2025–26" loading="lazy"
+                   onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="media-placeholder" aria-hidden="true" style="display:none;">
+                <span>QU</span>
+              </div>
+            </div>
+            <figcaption>Qatar University cricket — Student Life Awards 2025–26</figcaption>
+          </figure>
+          <figure class="media-tile">
+            <div class="media-photo">
+              <img src="assets/img/speaking.jpg" alt="Mohammad Kasif speaking at a conference" loading="lazy"
+                   onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="media-placeholder" aria-hidden="true" style="display:none;">
+                <span>MK</span>
+              </div>
+            </div>
+            <figcaption>Speaking &amp; teaching</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 06 · YOUTUBE ================================= -->
+      <section id="youtube" class="panel">
+        <p class="comment">// 06</p>
+        <h2>YouTube</h2>
+        <p class="panel-sub">talks, tutorials, explainers</p>
+
+        <div class="prose">
+          <p>On my YouTube channel I share research walkthroughs, project demos, and explanations of AI/ML concepts in a simple, accessible way.</p>
+        </div>
+
+        <div class="youtube-grid" id="youtubeGrid"></div>
+      </section>
+
+      <footer class="site-footer">
+        <p>Built with HTML, CSS &amp; JavaScript · deployed on Vercel.</p>
+        <p>© <span id="year"></span> Mohammad Kasif</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <span id="statusSection">summary.md</span>
+    <span class="status-sep">·</span>
+    <span>UTF-8</span>
+  </div>
+
+</body>
+</html>

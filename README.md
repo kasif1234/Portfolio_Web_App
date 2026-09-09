@@ -1,6 +1,7 @@
 # Mohammad Kasif — Portfolio
 
-A static HTML/CSS/JS site styled like a code editor (file explorer sidebar, status bar).
+A static HTML/CSS/JS site matching your reference layout: maroon sticky header, numbered
+sections (01–06), a profile card, and cream/editorial styling throughout.
 No framework, no build step — open `index.html` in a browser and it works.
 
 ## File structure — what goes where
@@ -42,18 +43,17 @@ You never need to touch the HTML or CSS for routine updates.
 
 ## Adding real photos
 
-There's already an `assets/img/` folder in this project, wired to work with zero code
-changes. Just drop a file in with the exact name below and it appears the next time you
-reload the page — no HTML editing:
+There's an `assets/img/` folder in this project, wired to work with zero code changes.
+Drop a file in with the exact name below and it appears next reload — no HTML editing:
 
-| Drop this file in `assets/img/` | Where it shows up |
-|---|---|
-| `profile.jpg` | Small photo next to "whoami" in the Summary hero |
-| `qu-cricket.jpg` | First tile in the Outside section |
-| `speaking.jpg` | Second tile in the Outside section |
+| File in `assets/img/` | Where it shows up | Status |
+|---|---|---|
+| `profile.jpg` | Hero photo in the Summary profile card | ✅ already in place (cropped from your reference screenshot — swap for a higher-res original any time) |
+| `qu-cricket.jpg` | First tile in the Outside section | Placeholder — add when ready |
+| `speaking.jpg` | Second tile in the Outside section | Placeholder — add when ready |
 
-Until a file exists, that spot just shows a plain placeholder tile instead of a broken
-image — so it's safe to deploy before you've added real photos, and safe to add them later.
+Until a file exists, that spot shows a plain placeholder tile instead of a broken image —
+so it's safe to deploy before you've added the remaining two photos.
 
 If you'd rather use `.png` or `.webp`, open `index.html`, search for `assets/img/`, and
 change the file extension in the matching `src="..."` attribute.
@@ -93,9 +93,12 @@ This is a plain static site, so Vercel needs no configuration.
 
 ## Notes
 
-- Fonts (`IBM Plex Mono` / `IBM Plex Sans`) load from Google Fonts via a `<link>` in
-  `index.html` — no local font files needed.
-- The typing animation on the hero and smooth-scrolling both respect
-  `prefers-reduced-motion`, so they're skipped for users who have that OS setting on.
-- The sidebar becomes a horizontal tab bar automatically under ~860px width — no separate
-  mobile markup to maintain.
+- Fonts (`Archivo` for headings, `Inter` for body) load from Google Fonts via a `<link>`
+  in `index.html` — no local font files needed.
+- Smooth-scrolling respects `prefers-reduced-motion`, so it's skipped for users who have
+  that OS setting on.
+- The top nav highlights the section currently in view automatically, and wraps/scrolls
+  on narrow screens — no separate mobile markup to maintain.
+- Colors and type are all defined once as CSS variables at the top of `style.css`
+  (`--maroon`, `--accent`, `--font-head`, etc.), sampled from your reference design —
+  change them there to retheme the whole site.

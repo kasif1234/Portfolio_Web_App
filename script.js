@@ -1,10 +1,10 @@
 /* =====================================================================
    CONTENT DATA
    ---------------------------------------------------------------------
-   Everything in this DATA object is what actually shows up on the page
-   for the News, Research, Projects, and YouTube sections, plus your
-   contact links. To update the site, edit the arrays below and save —
-   you do NOT need to touch index.html or style.css.
+   Everything in this DATA object is what shows up on the page for the
+   News, Research, Projects, and YouTube sections, plus your contact
+   links. To update the site, edit the arrays below and save — you do
+   NOT need to touch index.html or style.css.
 
    Each item is a plain JS object. Add a new one by copying an existing
    object in the same array (including the trailing comma) and editing
@@ -13,7 +13,7 @@
 const DATA = {
 
   // ---- contact / social links -----------------------------------
-  // Leave a value as "" to hide that link from the contact row.
+  // Leave a value as "" to hide that link from the profile card.
   LINKS: {
     email:    "mailto:mk2110389@qu.edu.qa",
     linkedin: "",   // e.g. "https://linkedin.com/in/your-handle"
@@ -45,35 +45,35 @@ const DATA = {
   // links: leave a value as "" and it renders as a muted, non-clickable tag.
   RESEARCH: [
     {
-      org: "qcri",
+      org: "QCRI",
       title: "NL2SQL for Human-Centric Tables",
       desc: "LLM-based question answering and semantic evaluation over natural-language-to-SQL systems for human-centric tabular data.",
       tags: ["LLM-based QA", "Semantic Evaluation", "NL2SQL"],
       links: { code: "", paper: "", demo: "" },
     },
     {
-      org: "qeeri",
+      org: "QEERI",
       title: "OTE Materials Informatics",
       desc: "Data-driven discovery methods applied to organic thermoelectric (OTE) polymers, combining materials science with AI-assisted analysis.",
       tags: ["Materials Science", "AI", "Data-Driven Discovery"],
       links: { code: "", paper: "", demo: "" },
     },
     {
-      org: "urep",
+      org: "UREP",
       title: "Turn Signal Usage Analysis",
       desc: "Computer vision-based analysis of driver turn-signal usage and behavior for Qatar University's Traffic and Safety Department.",
       tags: ["Computer Vision", "Driver Behavior Analysis", "Transportation Safety"],
       links: { code: "", paper: "", demo: "" },
     },
     {
-      org: "qcri · 2nd cycle",
+      org: "QCRI · 2nd Cycle",
       title: "Parameter Space Model Merging for LLMs",
       desc: "Investigating parameter-space interpolation techniques for merging large language models to support continual learning.",
       tags: ["LLM Merging", "Continual Learning", "Parameter Space Interpolation"],
       links: { code: "", paper: "", demo: "" },
     },
     {
-      org: "hmc",
+      org: "HMC",
       title: "Deep Learning for Surgical Instrument Detection & Segmentation",
       desc: "Worked on a QNRF-funded research project investigating deep learning approaches for surgical instrument detection and semantic segmentation, supporting model development, experimentation, ablation studies, and technical reporting.",
       tags: ["Medical Computer Vision", "Semantic Segmentation", "QNRF-funded Research", "Python", "PyTorch"],
@@ -117,12 +117,12 @@ const DATA = {
 
   // ---- youtube --------------------------------------------------------
   // videoId: paste the part after "v=" in a YouTube URL, e.g. "dQw4w9WgXcQ".
-  // Leave it "" to show a placeholder tile until you have the real video.
+  // Leave it "" to show a placeholder tile until you add the real video.
   YOUTUBE: [
-    { title: "Video 1 \u2014 add title", videoId: "" },
-    { title: "Video 2 \u2014 add title", videoId: "" },
-    { title: "Video 3 \u2014 add title", videoId: "" },
-    { title: "Video 4 \u2014 add title", videoId: "" },
+    { title: "How I Made $3500 on Fiverr as a Student", videoId: "" },
+    { title: "How to Become an Academic Weapon", videoId: "" },
+    { title: "We Built a Modular Robotic Car (Servo Control)", videoId: "" },
+    { title: "I Made a SMART Defense Turret System", videoId: "" },
   ],
 };
 
@@ -150,22 +150,22 @@ function linkTag(label, url) {
   return el("span", "link-tag is-disabled", `[${label}]`);
 }
 
-function renderContactRow() {
-  const row = document.getElementById("contactRow");
+function renderProfileLinks() {
+  const wrap = document.getElementById("profileLinks");
   const items = [
-    ["email", DATA.LINKS.email],
-    ["linkedin", DATA.LINKS.linkedin],
-    ["github", DATA.LINKS.github],
-    ["scholar", DATA.LINKS.scholar],
-    ["youtube", DATA.LINKS.youtube],
-    ["cv", DATA.LINKS.cv],
+    ["Email", DATA.LINKS.email],
+    ["LinkedIn", DATA.LINKS.linkedin],
+    ["GitHub", DATA.LINKS.github],
+    ["Google Scholar", DATA.LINKS.scholar],
+    ["YouTube", DATA.LINKS.youtube],
+    ["CV", DATA.LINKS.cv],
   ];
   items.forEach(([label, url]) => {
     if (!url) return;
-    const a = el("a", "contact-link", label);
+    const a = el("a", "profile-link", label);
     a.href = url;
-    if (label !== "email") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
-    row.appendChild(a);
+    if (label !== "Email") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    wrap.appendChild(a);
   });
 }
 
@@ -185,8 +185,8 @@ function renderResearch() {
   DATA.RESEARCH.forEach((item) => {
     const card = el("article", "research-item");
     card.appendChild(el("p", "research-org", item.org));
-    card.appendChild(el("h3", "research-title", item.title));
-    card.appendChild(el("p", "research-desc", item.desc));
+    card.appendChild(el("h3", "item-title", item.title));
+    card.appendChild(el("p", "item-desc", item.desc));
 
     const tagRow = el("div", "tag-row");
     item.tags.forEach((t) => tagRow.appendChild(el("span", "tag-chip", t)));
@@ -208,7 +208,7 @@ function renderProjects() {
     const card = el("article", "project-item");
 
     const main = el("div", "project-main");
-    main.appendChild(el("h3", "research-title", item.title));
+    main.appendChild(el("h3", "item-title", item.title));
     main.appendChild(el("p", "project-desc", item.desc));
     const linkRow = el("div", "link-row");
     linkRow.appendChild(linkTag("code", item.links.code));
@@ -217,7 +217,7 @@ function renderProjects() {
     card.appendChild(main);
 
     const side = el("div", "project-side");
-    side.appendChild(el("p", "project-side-label", "stack"));
+    side.appendChild(el("p", "project-side-label", "Stack"));
     const stack = el("div", "project-stack");
     item.stack.forEach((s) => stack.appendChild(el("span", "tag-chip", s)));
     side.appendChild(stack);
@@ -229,8 +229,7 @@ function renderProjects() {
 
 function playIconSVG() {
   return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="11" stroke="#565f6b" stroke-width="1.4"/>
-    <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="#e8a33d"/>
+    <path d="M8 6.5L18 12L8 17.5V6.5Z" fill="#ffffff"/>
   </svg>`;
 }
 
@@ -238,60 +237,36 @@ function renderYoutube() {
   const grid = document.getElementById("youtubeGrid");
   DATA.YOUTUBE.forEach((item) => {
     const hasVideo = Boolean(item.videoId);
-    const card = el("a", "youtube-card");
-    card.href = hasVideo ? `https://www.youtube.com/watch?v=${item.videoId}` : "#";
-    if (hasVideo) { card.target = "_blank"; card.rel = "noopener noreferrer"; }
+    const card = el("div", "youtube-card");
 
-    const thumb = el("div", "youtube-thumb");
+    const thumbLink = el("a", "youtube-thumb");
+    thumbLink.href = hasVideo ? `https://www.youtube.com/watch?v=${item.videoId}` : "#";
     if (hasVideo) {
-      thumb.style.backgroundImage = `url(https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg)`;
-    } else {
-      thumb.innerHTML = playIconSVG();
+      thumbLink.target = "_blank";
+      thumbLink.rel = "noopener noreferrer";
+      thumbLink.style.backgroundImage = `url(https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg)`;
     }
-    card.appendChild(thumb);
-    card.appendChild(el("p", "youtube-title", item.title));
+    thumbLink.appendChild(el("span", "play-button", playIconSVG()));
+    card.appendChild(thumbLink);
+
+    const body = el("div", "youtube-body");
+    body.appendChild(el("p", "youtube-title", item.title));
+    const watchLink = el("a", "youtube-watch", "Watch on YouTube \u2197");
+    watchLink.href = hasVideo ? `https://www.youtube.com/watch?v=${item.videoId}` : "#";
+    if (hasVideo) { watchLink.target = "_blank"; watchLink.rel = "noopener noreferrer"; }
+    body.appendChild(watchLink);
+    card.appendChild(body);
+
     grid.appendChild(card);
   });
 }
 
 /* =====================================================================
-   HERO TYPING EFFECT
-===================================================================== */
-function typeWhoami() {
-  const target = document.getElementById("whoamiOutput");
-  const text = "Mohammad Kasif";
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (reduceMotion) {
-    target.textContent = text;
-    target.classList.add("done");
-    return;
-  }
-
-  let i = 0;
-  const speed = 55;
-  (function step() {
-    target.textContent = text.slice(0, i);
-    i++;
-    if (i <= text.length) {
-      setTimeout(step, speed);
-    } else {
-      target.classList.add("done");
-    }
-  })();
-}
-
-/* =====================================================================
-   ACTIVE SECTION TRACKING (nav highlight + status bar + scroll progress)
+   ACTIVE SECTION TRACKING — highlights the current section in the top nav
 ===================================================================== */
 function setupScrollTracking() {
-  const sections = Array.from(document.querySelectorAll(".panel[id]"));
-  const links = Array.from(document.querySelectorAll(".file-link"));
-  const statusEl = document.getElementById("statusSection");
-  const fileNameFor = {
-    summary: "summary.md", news: "news.log", research: "research.py",
-    projects: "projects.json", outside: "outside.txt", youtube: "youtube.sh",
-  };
+  const sections = Array.from(document.querySelectorAll(".section[id]"));
+  const links = Array.from(document.querySelectorAll(".nav-link"));
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -299,35 +274,22 @@ function setupScrollTracking() {
         if (!entry.isIntersecting) return;
         const id = entry.target.id;
         links.forEach((l) => l.classList.toggle("active", l.dataset.target === id));
-        if (statusEl && fileNameFor[id]) statusEl.textContent = fileNameFor[id];
       });
     },
-    { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
   );
   sections.forEach((s) => observer.observe(s));
-
-  const progressBar = document.getElementById("progressBar");
-  window.addEventListener(
-    "scroll",
-    () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
-      progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
-    },
-    { passive: true }
-  );
 }
 
 /* =====================================================================
    INIT
 ===================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  renderContactRow();
+  renderProfileLinks();
   renderNews();
   renderResearch();
   renderProjects();
   renderYoutube();
-  typeWhoami();
   setupScrollTracking();
 
   const yearEl = document.getElementById("year");
